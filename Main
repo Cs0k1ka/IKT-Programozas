@@ -1,0 +1,47 @@
+class Vivmanysag:
+    def __init__(self, ev, adat):
+        self.ev = ev
+        self.adat = adat
+
+vivmanysagok = [
+    Vivmanysag(1800, "Első vívmány"),
+    Vivmanysag(1850, "Második vívmány"),
+    Vivmanysag(1900, "Harmadik vívmányság")
+]
+
+def adat_listazasa():
+    for vivmanysag in vivmanysagok:
+        print(f"{vivmanysag.ev}: {vivmanysag.adat}")
+
+def fajlba_iras(fajlnev):
+    with open(fajlnev, 'w') as fajl:
+        for vivmanysag in vivmanysagok:
+            fajl.write(f"{vivmanysag.ev}: {vivmanysag.adat}\n")
+    print(f"A vívmányok a {fajlnev} fáljba íródtak.")
+
+def idotartomany_listazasa(kezdo_ev,vegso_ev):
+    for vivmanysag in vivmanysagok:
+        if kezdo_ev <= vivmanysagok.ev <= vegso_ev:
+            print(f"{vivmanysag.ev}: {vivmanysag.adat}")
+
+while True:
+    print("\nMenü:")
+    print("1. Minden adat listázása a képernyőre")
+    print("2. Minden adat listázása egy fájlba")
+    print("3. Adott időtartományban lévő vívmányok listázása")
+    print("0. Kilépés")
+
+    valasztas = input("Válaszon egy opciót: ")
+    if valasztas == "1":
+        adat_listazasa()
+    elif valasztas == "2":
+        fajlnev = input("Adja meg a kimeneti fájl nevét: ")
+        fajlba_iras(fajlnev)
+    elif valasztas == "3":
+        kezdo_ev = int(input("Adja meg a kezdő évet: "))
+        vegso_ev = int(input("Adja meg a kezdő évet: "))
+        idotartomany_listazasa(kezdo_ev, vegso_ev)
+    elif valasztas == "0":
+        break
+    else:
+        print('Érvénytelen választás, próbáld újra.')
